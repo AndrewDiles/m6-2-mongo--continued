@@ -38,6 +38,7 @@ The 12-byte ObjectId value consists of
 ### `ObjectId().getTimestamp()`
 
 ```js
+const { MongoClient, ObjectId} = require('mongob');
 ObjectId('5e98febee9b6840a209fe251').getTimestamp();
 
 // 2020-04-17T00:56:30.000Z

@@ -36,8 +36,8 @@ function TicketWidget() {
                     seatIndex={seatIndex}
                     width={36}
                     height={36}
-                    price={seat.price}
-                    status={seat.isBooked ? 'unavailable' : 'available'}
+                    price={seat && seat.price}
+                    status={seat && seat.isBooked ? 'unavailable' : 'available'}
                   />
                 </SeatWrapper>
               );

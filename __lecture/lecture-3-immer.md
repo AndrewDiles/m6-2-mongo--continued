@@ -42,6 +42,29 @@ function reducer(state, action) {
     return state;
   }
 }
+
+//solutions: 
+
+function reducer(state, action) {
+  if (action.type === 'ADD_KETCHUP') {
+    return {
+      ...state,
+      burgerToppings: [
+        ...state.burgerToppings,
+        'ketchup'
+      ]
+      
+      }
+  }
+}
+
+function reducer(state, action) {
+  if (action.type === 'ADD_KETCHUP') {
+    let newState = state;
+    newState.burgerToppings.push('ketchup');
+    return {...newState}
+  }
+}
 ```
 
 ---
@@ -67,6 +90,18 @@ const initialState = {
     },
   },
 };
+
+function reducer(state, action) {
+  if (action.type === 'REMOVE_RACER_FROM_TEAM') {
+    const { teamId, racerName } = action;
+
+    delete state.competitors[teamId].racers[racerName];
+
+    return state;
+  }
+}
+
+// Solution
 
 function reducer(state, action) {
   if (action.type === 'REMOVE_RACER_FROM_TEAM') {
@@ -146,6 +181,16 @@ function reducer(state, action) {
     return state;
   }
 }
+
+// Solution:
+
+function reducer(state, action) {
+  if (action.type === 'ADD_KETCHUP') {
+    return produce(state, draftState => {
+      draftState.burgerToppings.push('ketchup');
+    });
+  }
+}
 ```
 
 ---
@@ -177,6 +222,20 @@ function reducer(state, action) {
     delete state.competitors[teamId].racers[racerName];
 
     return state;
+  }
+}
+
+// Solution
+
+function reducer(state, action) {
+  if (action.type === 'REMOVE_RACER_FROM_TEAM') {
+    const { teamId, racerName } = action;
+
+    delete state.competitors[teamId].racers[racerName];
+
+    return produce(state, draftState =>{
+      delete draftState.competitors[teamId].racers[racerName];
+    });
   }
 }
 ```

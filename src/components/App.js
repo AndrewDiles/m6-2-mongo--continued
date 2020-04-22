@@ -14,17 +14,42 @@ import 'tippy.js/dist/tippy.css';
 function App() {
   const {
     actions: { receiveSeatInfoFromServer },
+    state,
   } = React.useContext(SeatContext);
   const {
     actions: { clearSnackbar },
     status,
   } = React.useContext(BookingContext);
 
+  //  original:
+  // React.useEffect(() => {
+  //   fetch('/api/seat-availability')
+  //   // fetch('/getSeats')
+  //     .then(res => res.json())
+  //   //   .then(data => {
+  //   //     console.log("api's data:",data)
+  //   // //   receiveSeatInfoFromServer()
+  //   // })
+  //     .then(receiveSeatInfoFromServer);
+  // }, [receiveSeatInfoFromServer]);
+
   React.useEffect(() => {
-    fetch('/api/seat-availability')
+    fetch('/getSeats')
       .then(res => res.json())
-      .then(receiveSeatInfoFromServer);
-  }, [receiveSeatInfoFromServer]);
+      .then(data => {
+        let seats = {};
+          data.data.forEach((element)=> {
+            seats[element._id] = { price: element.price, isBooked: element.isBooked }
+          })
+        // console.log('seatsseatsseatsseats',seats);
+        return {seats}
+      })
+      .then(receiveSeatInfoFromServer)
+  },[]);
+
+  if (state) console.log('state:', state);
+
+
 
   return (
     <>
