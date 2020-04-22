@@ -81,7 +81,8 @@ const PurchaseModal = () => {
 
           purchaseTicketRequest();
 
-          fetch('/api/book-seat', {
+          // fetch('/api/book-seat', {
+          fetch('/bookSeat', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -96,7 +97,9 @@ const PurchaseModal = () => {
           })
             .then((res) => res.json())
             .then((json) => {
+              console.log('jsonjsonjsonjsonjsonjson',json)
               if (json.success) {
+                console.log('successsuccesssuccesssuccesssuccesssuccesssuccess');
                 purchaseTicketSuccess();
                 markSeatAsPurchased(selectedSeatId);
               } else {

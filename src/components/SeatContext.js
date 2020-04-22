@@ -5,19 +5,18 @@ export const SeatContext = React.createContext();
 const initialState = {
   hasLoaded: false,
   seats: null,
-  numOfRows: 0,
-  seatsPerRow: 0,
+  numOfRows: 8,
+  seatsPerRow: 12,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'receive-seat-info-from-server': {
+      console.log('actionactionactionactionactionaction',action);
       return {
         ...state,
         hasLoaded: true,
         seats: action.seats,
-        numOfRows: action.numOfRows,
-        seatsPerRow: action.seatsPerRow,
       };
     }
     case 'mark-seat-as-purchased': {
